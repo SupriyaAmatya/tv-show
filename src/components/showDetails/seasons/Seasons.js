@@ -35,7 +35,7 @@ class Seasons extends Component {
 
     return (
       <div>
-        <h3> Episode Lists: </h3>
+        <div className="sub-title"> Episode Lists </div>
         {isLoading && <p>Loading...</p>}
         {Object.keys(episodesBySeason)
           .map(seasonNumber => {

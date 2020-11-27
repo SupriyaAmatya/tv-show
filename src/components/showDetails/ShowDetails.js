@@ -3,6 +3,7 @@ import { getIndividualShow } from '../../services/tvShowsData';
 
 import Seasons from './seasons/Seasons';
 import ShowCast from './ShowCast';
+import ShowInfo from './ShowInfo';
 
 class ShowDetails extends Component {
   constructor(props) {
@@ -29,16 +30,23 @@ class ShowDetails extends Component {
 
   render() {
     const { showInfo, showId } = this.state;
-
+    console.log(showInfo);
     return (
-      <div>
-        {showInfo.name}
-        <Seasons showId={showId} />
-        <ShowCast showId={showId} />
+      <div className="show-details my-8x">
+        <div className="container">
+          <div className="row">
+            <div className="col col-9-lg">
+              <ShowInfo data={showInfo} />
+              <Seasons showId={showId} />
+            </div>
+            <div className="col col-3-lg">
+              <ShowCast showId={showId} />
+            </div>
+          </div>
+        </div>
       </div>
     );
-  }
-}
+  };
+};
 
 export default ShowDetails;
-

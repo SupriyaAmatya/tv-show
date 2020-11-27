@@ -1,0 +1,44 @@
+.navbar {
+  display        : flex;
+  justify-content: space-between;
+  align-self     : center;
+  height         : $navbar-height;
+
+  @include e(brand) {
+    margin    : 0;
+    margin-top: 10px;
+    font-size : 36px;
+  }
+
+  @include e(menu) {
+    display    : flex;
+    align-items: center;
+  }
+
+  @include e(item) {
+    height: 100%;
+  }
+
+  @include e(link) {
+    height        : 100%;
+    display       : flex;
+    align-items   : center;
+    margin-left   : getSpacing('5x');
+    color         : $base-grey;
+    font-weight   : 700;
+    letter-spacing: 1.5px;
+    @include getFontSize('label');
+    text-transform: uppercase;
+    padding       : getSpacing('1x');
+    @include transition();
+
+    @include m(active) {
+      color     : $primary-color;
+      box-shadow: inset 0 -2px 0 0 $primary-color;
+    }
+
+    &:hover {
+      color: inherit;
+    }
+  }
+}

@@ -17,7 +17,7 @@ class EpisodeDetails extends Component {
       episodeDetails,
       isLoading: false,
     });
-    console.log(episodeDetails._embedded.show);
+    // console.log(episodeDetails._embedded.show);
   }
 
   componentDidMount() {

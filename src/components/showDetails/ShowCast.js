@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { getShowCast } from '../../services/tvShowsData';
+import CastList from './CastList';
 
 class ShowCast extends Component {
   constructor(props) {
     super(props)
-  
+
     this.state = {
-       cast:[],
-       isLoading: true,
+      cast: [],
+      isLoading: true,
     }
   }
 
-  fetchCast = async (showId) =>{
+  fetchCast = async (showId) => {
     const cast = await getShowCast(showId);
     this.setState({
       cast,
@@ -19,22 +20,25 @@ class ShowCast extends Component {
     })
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.fetchCast(this.props.showId)
   }
-  
+
   render() {
     const { cast, isLoading } = this.state;
-    
+    console.log(cast);
     return (
-      <div>
-        <h2>Show Cast</h2>
+      <div className="cast">
+        <div className="sub-title">Cast</div>
         {isLoading && <p>Loading...</p>}
-    {cast.map(person => { 
-      const character = person.character.name;
-      const actor = person.person.name;
-      const id = person.character.id;
-      return <div key={id} ><strong>{actor}</strong> as <em>{character}</em></div> })}
+        <ul className="cast__list">
+          {cast.map(person => {
+            const character = person.character;
+            const actor = person.person;
+            const id = person.character.id;
+            return <CastList key={id} character={character} actor={actor} />
+          })}
+        </ul>
       </div>
     );
   }

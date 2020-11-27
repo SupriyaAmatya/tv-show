@@ -1,6 +1,8 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { getAllShows } from '../../services/tvShowsData';
+import React, { Component } from 'react';
+
+import ShowCard from '../common/card';
+import SearchBox from './SearchBox';
+import { getAllShows, getSearchResults } from '../../services/tvShowsData';
 
 class Shows extends Component {
   constructor(props) {
@@ -9,6 +11,7 @@ class Shows extends Component {
     this.state = {
       data: [],
       isLoading: true,
+      search: '',
     }
   }
 
@@ -19,8 +22,27 @@ class Shows extends Component {
         data,
         isLoading: false,
       });
-    }, 1000
+    }, 500
     )
+  }
+
+  handleSearchInput = (e) =>{
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
+
+  getSearchResults = async (e) => {
+    e.preventDefault();
+    let newData = [];
+    const searchResult = await getSearchResults(this.state.search);
+
+    searchResult.map(result => newData.push(result.show));
+    this.setState({
+      ...this.state,
+      data: newData,
+      isLoading: false,
+    });
   }
 
   componentDidMount() {
@@ -29,24 +51,25 @@ class Shows extends Component {
 
   render() {
     const { data, isLoading } = this.state;
-    const renderAllShows = data && data.length ? data.map(show => {
-      return (
-        <div key={show.id}>
-          <Link
-            to={{
-              pathname: `/shows/${show.id}`,
-              state: { data: show },
-            }}
-          >{show.name}</Link>
-        </div>
 
-      )
-    }) : null
+    const renderShows = data && data.length ? data.map(show => {
+      return (
+        <ShowCard key={show.id} show={show} />
+      );
+    }) : <p>No shows available</p>
 
     return (
-      <div className="App">
-        {isLoading && <div>Loading...</div>}
-        {renderAllShows}
+      <div className="main-wrapper">
+        <SearchBox name='search' placeholder="Search TV Show" onChange={this.handleSearchInput} onSubmit={this.getSearchResults}/>
+        <div className="container">
+          <div className="title">Shows</div>
+
+          {isLoading && <div>Loading...</div>}
+
+          <div className="row">
+            {renderShows}
+          </div>
+        </div>
       </div>
     );
   }

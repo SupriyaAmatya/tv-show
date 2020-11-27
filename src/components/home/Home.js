@@ -1,12 +1,14 @@
-import React from 'react'
+import React from 'react';
+import HeroSection from './HeroSection';
+import TodaySchedule from './TodaySchedule';
 
 const Home = () => {
   return (
     <div>
-      <h2>Welcome to the TV shows</h2>
-      <p>Find all details about your tv shows...</p>
+      <HeroSection />
+      <TodaySchedule />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

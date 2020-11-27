@@ -1,5 +1,5 @@
 import { get } from '../utils/http';
-import { showsEndpoint, scheduleShowsEndpoint, episodesEndpoint } from '../config/endpoints';
+import { showsEndpoint, scheduleShowsEndpoint, episodesEndpoint, searchEndpont } from '../config/endpoints';
 
 export const getAllShows = async () => {
   const showsList = await get(showsEndpoint);
@@ -49,4 +49,13 @@ export const getEpisodeDetails = async (id) => {
     return null
   }
   return episodeDetails;
+}
+
+export const getSearchResults = async (value) =>{
+  const searchResults = await get(`${searchEndpont}?q=${value}`);
+
+  if (!searchResults) {
+    return null
+  }
+  return searchResults;
 }

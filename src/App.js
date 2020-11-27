@@ -1,16 +1,17 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import Header from './components/header/Header';
+import { Switch, Route } from 'react-router-dom';
+
+import Home from './components/home/Home';
 import Shows from './components/shows/Shows';
+import Header from './components/common/layouts';
 import ShowDetails from './components/showDetails/ShowDetails';
 import EpisodeDetails from './components/showDetails/episodes/EpisodeDetails';
-import Home from './components/home/Home';
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <div style={{ marginTop: '120px' }}>
+      <div>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/shows" component={Shows} />
@@ -20,6 +21,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
 export default App;

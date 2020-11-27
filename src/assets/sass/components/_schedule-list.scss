@@ -1,0 +1,37 @@
+.schedule {
+  padding           : getSpacing('4x');
+  background-color  : #fff;
+  -webkit-box-shadow: $box-shadow;
+  box-shadow        : $box-shadow;
+  margin-bottom     : getSpacing('6x');
+
+  @include e(image) {
+    width              : 70px;
+    border-radius      : 5px;
+    overflow           : hidden;
+    margin-right       : getSpacing('3x');
+    background-image   : url('../../images/no-img.png');
+    background-repeat  : no-repeat;
+    background-size    : cover;
+    background-position: center;
+  }
+
+  @include e(name) {
+    @include getFontSize('body1');
+    font-weight  : 600;
+    margin-bottom: getSpacing('2x');
+  }
+
+  @include e(ep-name) {
+    @include getFontSize('body3');
+    margin-bottom: getSpacing('4x');
+
+    svg {
+      vertical-align: middle;
+    }
+  }
+
+  @include e(extra-info) {
+    margin-bottom: getSpacing('1x');
+  }
+}

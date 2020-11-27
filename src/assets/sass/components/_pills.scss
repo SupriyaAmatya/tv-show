@@ -1,0 +1,13 @@
+.pills {
+  display: flex;
+
+  @include e(item) {
+    background-color: getColor('grey.50');
+    color           : white;
+    padding         : getSpacing('1x') getSpacing('2x');
+    border-radius   : 14px;
+    margin-right    : getSpacing('2x');
+    @include getFontSize('label');
+    margin-bottom: getSpacing('2x');
+  }
+}
